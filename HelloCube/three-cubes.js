@@ -1,7 +1,7 @@
 'use strict';
 import * as THREE from './three.module.js';
 
-function main(){
+const main = () => {
     // traemos nuestra etiqueta canvas
     const canvas = document.querySelector('#cube');
 
@@ -37,7 +37,7 @@ function main(){
     const geometry = new THREE.BoxGeometry(boxWidth, boxHeight, boxDepth);
 
     // subrutina para crear los cubos
-    function makeCube(geometry, color, coodinateX){
+    const makeCube = (geometry, color, coodinateX) => {
         // creamos el material que tendra nuestra geometria
         // const material = new THREE.MeshBasicMaterial({color: 0x2E48FF})
         const material = new THREE.MeshToonMaterial({color});

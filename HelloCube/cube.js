@@ -1,13 +1,16 @@
 'use strict';
 import * as THREE from './three.module.js';
 
-function main(){
+const main = () => {
+
     // traemos nuestra etiqueta canvas
     const canvas = document.querySelector('#cube');
 
     // creamos nuestro render
     const renderer = new THREE.WebGLRenderer({canvas});
+    // damos un tamaño al background donde estara nuestro cuerpo
     renderer.setSize(window.innerWidth, window.innerHeight);
+    // renderer.setSize(400,200);
 
     // creamos nuestra camara
     const fov = 75;
@@ -15,7 +18,7 @@ function main(){
     const near = 0.1;
     const far = 5;
     const camera = new THREE.PerspectiveCamera(fov, aspect, near, far);
-    camera.position.z = 2;
+    camera.position.z = 4;
 
     // creamos nuestra escena
     const scene = new THREE.Scene();
@@ -49,8 +52,8 @@ function main(){
     renderer.render(scene, camera);
     
     
-    // creamos la animacion demovimiento en base al tiempo
-    function render(time){
+    // creamos la animacion de movimiento en base al tiempo
+    const renderMove = (time) => {
         time *= 0.001;//convertimos en segundos
     
         cube.rotation.x = time;
@@ -58,10 +61,38 @@ function main(){
     
         renderer.render(scene, camera);
     
-        requestAnimationFrame(render);
-    
+        requestAnimationFrame(renderMove);
     }
-    requestAnimationFrame(render);
+
+    // Movimiento del cubo usando el mouse
+    const mouseMove = () => {
+        canvas.addEventListener('mousemove', (event)=>{
+            console.log(event.offsetX / 100);
+            console.warn(event.offsetY /100);
+
+            
+            camera.position.x = event.offsetX / 700;
+            camera.position.y = event.offsetY / 700;
+
+            renderer.render(scene, camera);
+        });
+    }
+
+    // Acercamos hacia la camara el cubo cuando damos click
+    const click = () => {
+        canvas.addEventListener('click', ()=>{
+
+            (camera.position.z === 4)
+            ? camera.position.z = 2
+            : camera.position.z = 4;
+            
+            renderer.render(scene, camera);
+        });
+    }
+    
+    requestAnimationFrame(click);
+    requestAnimationFrame(mouseMove);
+    requestAnimationFrame(renderMove);
 }
 
 main();
