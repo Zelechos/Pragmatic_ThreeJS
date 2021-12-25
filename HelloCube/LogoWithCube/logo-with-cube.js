@@ -1,5 +1,5 @@
 'use strict'
-import * as THREE from './three.module.js';
+import * as THREE from '../three.module.js';
 
 const renderCube = () => {
 
@@ -10,7 +10,7 @@ const renderCube = () => {
     const renderer = new THREE.WebGLRenderer({canvas});
 
     // damos un repectivo tamaño a nuestro bg
-    renderer.setSize(150,100);
+    renderer.setSize(60,60);
 
     const fov = 750;
     const aspect = 2;
@@ -18,7 +18,7 @@ const renderCube = () => {
     const far = 10;
     const camera = new THREE.PerspectiveCamera(fov, aspect, near, far);
 
-    camera.position.z = 4;
+    camera.position.z = 3;
 
     // creamos nuestro escenario
     const scene = new THREE.Scene();
