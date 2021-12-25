@@ -8,6 +8,7 @@ const main = () => {
 
     // creamos nuestro render
     const renderer = new THREE.WebGLRenderer({canvas});
+    
     // damos un tamaño al background donde estara nuestro cuerpo
     renderer.setSize(window.innerWidth, window.innerHeight);
     // renderer.setSize(400,200);
